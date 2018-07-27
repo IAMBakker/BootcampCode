@@ -59,9 +59,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LoginTest.cs" />
     <Compile Include="SignOutTest.cs" />
-    <Compile Include="Test\Base\TestBase.cs" />
+    <Compile Include="Test\Base\TestShopScenario.cs" />
     <Compile Include="EmptyCartTest.cs" />
     <Compile Include="FillCartTest.cs" />
+    <Compile Include="AdjustPersonalinfoTest.cs" />
+    <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
