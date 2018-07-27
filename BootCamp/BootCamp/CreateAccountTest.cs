@@ -9,6 +9,7 @@ namespace BootCamp
     [TestClass]
     public class CreateAccountTest : TestShopScenario
     {
+
         [TestMethod]
         public void TestMethod1()
         {
