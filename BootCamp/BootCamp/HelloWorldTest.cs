@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BootCamp
 {
     [TestClass]
-    public class UnitTest1
+    public class HelloWorldTest
     {
         [TestMethod]
         public void TestMethod1()

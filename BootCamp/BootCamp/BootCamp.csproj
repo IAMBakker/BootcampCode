@@ -55,9 +55,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="HelloWorldTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest2.cs" />
+    <Compile Include="LoginTest.cs" />
+    <Compile Include="SignOutTest.cs" />
+    <Compile Include="Test\Base\TestShopScenario.cs" />
+    <Compile Include="EmptyCartTest.cs" />
+    <Compile Include="FillCartTest.cs" />
+    <Compile Include="AdjustPersonalinfoTest.cs" />
+    <Compile Include="AdjustPersonalInfoOnHomepageTest.cs" />
+    <Compile Include="CreateAccountTest.cs" />
+    <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
