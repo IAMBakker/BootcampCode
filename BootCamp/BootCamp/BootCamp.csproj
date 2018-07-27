@@ -63,6 +63,8 @@
     <Compile Include="EmptyCartTest.cs" />
     <Compile Include="FillCartTest.cs" />
     <Compile Include="AdjustPersonalinfoTest.cs" />
+    <Compile Include="AdjustPersonalInfoOnHomepageTest.cs" />
+    <Compile Include="CreateAccountTest.cs" />
     <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>

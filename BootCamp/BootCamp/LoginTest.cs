@@ -20,8 +20,6 @@ namespace BootCamp
             IWebElement pageTitle = driver.FindElement(By.CssSelector("h1.page-heading"));
 
             Assert.AreEqual("MY ACCOUNT", pageTitle.Text);
-
-            driver.Quit();
         }
     }
 }
