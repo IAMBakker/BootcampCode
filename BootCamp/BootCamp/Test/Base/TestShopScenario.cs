@@ -30,7 +30,7 @@ namespace BootCamp.Test.Base
         [TestCleanup]
         public void TearDown()
         {
-            driver.Quit();
+            //driver.Quit();
         }
     }
 }
