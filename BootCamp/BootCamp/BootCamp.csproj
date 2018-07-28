@@ -57,7 +57,9 @@
   <ItemGroup>
     <Compile Include="HelloWorldTest.cs" />
     <Compile Include="Model\Auto.cs" />
-    <Compile Include="Pages\Base\MyAccountPage.cs" />
+    <Compile Include="Model\WishList.cs" />
+    <Compile Include="Pages\WishListsPage.cs" />
+    <Compile Include="Pages\MyAccountPage.cs" />
     <Compile Include="Pages\Base\TestShopRightColumn.cs" />
     <Compile Include="Pages\Base\TestShopLeftColumn.cs" />
     <Compile Include="Pages\Base\TestShopFooter.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="ObjectOrientedTest.cs" />
     <Compile Include="Test\FillInContactFormTest.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Test\DeleteWishListTest.cs" />
     <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>

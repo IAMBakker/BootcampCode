@@ -1,5 +1,6 @@
 ﻿using BootCamp.Model;
 using BootCamp.Pages.Base;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Collections;
@@ -13,13 +14,14 @@ namespace BootCamp.Pages
     public class WishListsPage : TestShopPage
     {
         private By newWishListNameField = By.CssSelector("form#form_wishlist input#name");
-        private By submitNewWishListButton = By.CssSelector("for#form_wishlist button#submitWishlist");
+        private By submitNewWishListButton = By.CssSelector("form#form_wishlist button#submitWishlist");
         private By wishListsTable = By.CssSelector("div#block-history tbody");
         private By rowLocator = By.CssSelector("tr[id*=wishlist]");
-        private static By nameCell = By.CssSelector("td[style='width: 200px;']");
+        private static By nameCell = By.CssSelector("td[style='width:200px;']");
         private static By amountOfItemsCell = By.CssSelector("td.align_center");
-        private static By defaultCheckboxCell = By.CssSelector("td.wishlist_default > p > i");
+        private static By defaultCheckboxCell = By.CssSelector("td.wishlist_default i");
         private static By deleteCell = By.CssSelector("td.wishlist_delete > a");
+        private static By defaultWishListLocator = By.CssSelector("p.is_wish_list_default");
 
         public WishListsPage(IWebDriver driver) : base(driver)
         {
@@ -39,7 +41,12 @@ namespace BootCamp.Pages
 
         public void AddWishList(WishList wishList)
         {
-
+            driver.FindElement(newWishListNameField).SendKeys(wishList.Name);
+            driver.FindElement(submitNewWishListButton).Click();
+            if (wishList.IsDefault)
+            {
+                MakeWishListDefault(wishList);
+            }
         }
 
         public void DeleteWishList(WishList wishListToDelete)
@@ -54,6 +61,35 @@ namespace BootCamp.Pages
                     break;
                 }
             }
+            IAlert alert = driver.SwitchTo().Alert();
+            Console.WriteLine(alert.Text);
+            alert.Accept();
+            wait.Until<bool>((p) => WishListsUpdated(wishLists));
+        }
+
+        public void MakeWishListDefault(WishList wishListToMakeDefault)
+        {
+            IList<WishListRow> wishLists = GetWishListRows();
+
+            foreach(WishListRow wishList in wishLists)
+            {
+                if (wishList.WishListObject.EqualsIgnoreIsDefault(wishListToMakeDefault))
+                {
+                    wishList.MakeWishListDefault();
+                    break;
+                }
+            }
+            wait.Until<bool>((p) => WishListsUpdated(wishLists));
+        }
+
+        private bool WishListsUpdated(IList<WishListRow> wishLists)
+        {
+            bool isUpdated = false;
+            if (!wishLists.Equals(GetWishListRows()))
+            {
+                isUpdated = true;
+            }
+            return isUpdated;
         }
 
         private IList<WishListRow> GetWishListRows()
@@ -70,15 +106,22 @@ namespace BootCamp.Pages
         public class WishListRow
         {
             public WishList WishListObject { get; set; }
+            private String wishListName;
+            private int wishListItems;
+            public IWebElement ThisWishListRow { get; set; }
             public IWebElement DefaultCell { get; set; }
             public IWebElement DeleteCell { get; set; }
 
             public WishListRow(IWebElement row)
             {
-                WishListObject = new WishList(row.FindElement(nameCell).Text,
-                    Int32.Parse(row.FindElement(amountOfItemsCell).Text));
+                ThisWishListRow = row;
+                wishListName = row.FindElement(nameCell).Text;
+                wishListItems = Int32.Parse(row.FindElement(amountOfItemsCell).Text);
                 DefaultCell = row.FindElement(defaultCheckboxCell);
                 DeleteCell = row.FindElement(deleteCell);
+                WishListObject = new WishList(wishListName,
+                    wishListItems,
+                    doesWishListDefaultElementExist());
             }
             public void DeleteWishList()
             {
@@ -87,6 +130,19 @@ namespace BootCamp.Pages
             public void MakeWishListDefault()
             {
                 DefaultCell.Click();
+            }
+            public bool doesWishListDefaultElementExist()
+            {
+                bool elementExists = false;
+                try
+                {
+                    ThisWishListRow.FindElement(defaultWishListLocator);
+                    elementExists = true;
+                } catch (NoSuchElementException e)
+                {
+                    //Console.WriteLine(wishListName + " is not the default wishlist");
+                }
+                return elementExists;
             }
         }
     }

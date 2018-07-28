@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace BootCamp.Pages.Base
     public class TestShopPage
     {
         protected IWebDriver driver;
+        protected WebDriverWait wait;
         public TestShopHeader Header { get; }
         public TestShopFooter Footer { get; }
         public TestShopLeftColumn LeftColumn { get; }
@@ -27,6 +29,7 @@ namespace BootCamp.Pages.Base
             LeftColumn = TestShopLeftColumn.Instance;
             RightColumn = TestShopRightColumn.Instance;
             ShareWebDriver();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
         private void ShareWebDriver()
