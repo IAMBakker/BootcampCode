@@ -12,8 +12,7 @@ namespace BootCamp.Test
         public void TestMethod1()
         {
             ContactUsPage page = new HomePage(driver)
-                .GetHeaderPage()
-                .ClickContactUs()
+                .Header.ClickContactUs()
                 .FillContactForm("Customer service", "bootcamper@feelthepain.com", "43211234", "Ipod defect while lifting, \nneed new one");
             String pageTitle = page.GetPageTitle();
             String alertMessage = page.GetAlertMessageText();

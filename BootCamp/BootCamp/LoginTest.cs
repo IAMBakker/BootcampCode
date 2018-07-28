@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using BootCamp.Test.Base;
+using BootCamp.Test;
 
 namespace BootCamp
 {
@@ -12,14 +13,12 @@ namespace BootCamp
         [TestMethod]
         public void TestMethod1()
         {
-            driver.FindElement(By.CssSelector("a.login")).Click();
-            driver.FindElement(By.CssSelector("input#email")).SendKeys("ico.bakker+123@gmail.com");
-            driver.FindElement(By.CssSelector("input#passwd")).SendKeys("test123");
-            driver.FindElement(By.CssSelector("button#SubmitLogin")).Click();
+            String pageTitle = new HomePage(driver)
+                .Header.ClickLogin()
+                .LoginSuccesfully("ico.bakker+123@gmail.com", "test123")
+                .GetPageTitle();
 
-            IWebElement pageTitle = driver.FindElement(By.CssSelector("h1.page-heading"));
-
-            Assert.AreEqual("MY ACCOUNT", pageTitle.Text);
+            Assert.AreEqual("MY ACCOUNT", pageTitle);
         }
     }
 }
