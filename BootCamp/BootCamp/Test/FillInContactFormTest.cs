@@ -1,5 +1,6 @@
 ﻿using System;
 using BootCamp.Pages;
+using BootCamp.Pages.Base;
 using BootCamp.Test.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

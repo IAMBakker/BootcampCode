@@ -55,9 +55,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HelloWorldTest.cs" />
+    <Compile Include="Test\HelloWorldTest.cs" />
     <Compile Include="Model\Auto.cs" />
+    <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Model\WishList.cs" />
+    <Compile Include="Pages\NewAccountPage.cs" />
+    <Compile Include="Pages\PersonalInformationPage.cs" />
     <Compile Include="Pages\WishListsPage.cs" />
     <Compile Include="Pages\MyAccountPage.cs" />
     <Compile Include="Pages\Base\TestShopRightColumn.cs" />
@@ -68,22 +71,24 @@
     <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Pages\ContactUsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LoginTest.cs" />
-    <Compile Include="SignOutTest.cs" />
+    <Compile Include="Test\LoginTest.cs" />
+    <Compile Include="Test\SignOutTest.cs" />
     <Compile Include="Test\Base\TestShopScenario.cs" />
     <Compile Include="EmptyCartTest.cs" />
     <Compile Include="FillCartTest.cs" />
-    <Compile Include="AdjustPersonalinfoTest.cs" />
-    <Compile Include="AdjustPersonalInfoOnHomepageTest.cs" />
-    <Compile Include="CreateAccountTest.cs" />
-    <Compile Include="ObjectOrientedTest.cs" />
+    <Compile Include="Test\AdjustPersonalinfoTest.cs" />
+    <Compile Include="Test\AdjustPersonalInfoOnHomepageTest.cs" />
+    <Compile Include="Test\CreateAccountTest.cs" />
+    <Compile Include="Test\ObjectOrientedTest.cs" />
     <Compile Include="Test\FillInContactFormTest.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Test\DeleteWishListTest.cs" />
     <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

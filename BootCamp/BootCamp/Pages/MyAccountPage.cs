@@ -10,6 +10,7 @@ namespace BootCamp.Pages.Base
     public class MyAccountPage : TestShopPage
     {
         private By myWishListsTile = By.CssSelector("li.lnk_wishlist");
+        private By personalInformationTile = By.CssSelector("a[title='Information']");
 
         public MyAccountPage(IWebDriver driver) : base(driver)
         {
@@ -21,6 +22,10 @@ namespace BootCamp.Pages.Base
             return new WishListsPage(driver);
         }
 
-        
+        public PersonalInformationPage ClickMyPersonalInformation()
+        {
+            driver.FindElement(personalInformationTile).Click();
+            return new PersonalInformationPage(driver);
+        }
     }
 }

@@ -4,8 +4,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using BootCamp.Test.Base;
 using BootCamp.Test;
+using BootCamp.Pages.Base;
 
-namespace BootCamp
+namespace BootCamp.Test
 {
     [TestClass]
     public class LoginTest : TestShopScenario

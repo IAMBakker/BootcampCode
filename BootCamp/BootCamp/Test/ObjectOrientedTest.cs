@@ -2,7 +2,7 @@
 using BootCamp.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BootCamp
+namespace BootCamp.Test
 {
     [TestClass]
     public class ObjectOrientedTest

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BootCamp
+namespace BootCamp.Test
 {
     [TestClass]
     public class HelloWorldTest

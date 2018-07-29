@@ -26,5 +26,11 @@ namespace BootCamp.Pages.Base
                 driver = value;
             }
         }
+
+        public PersonalInformationPage ClickManagePersonalInformation()
+        {
+            driver.FindElement(By.CssSelector("footer#footer * a[title = 'Manage my personal information']")).Click();
+            return new PersonalInformationPage(driver);
+        }
     }
 }

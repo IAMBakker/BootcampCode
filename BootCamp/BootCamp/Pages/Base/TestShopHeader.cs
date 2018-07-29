@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using BootCamp.Test;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace BootCamp.Pages.Base
         private IWebDriver driver;
         private By ContactUsButton = By.CssSelector("div#contact-link a");
         private By LoginLocator = By.CssSelector("a.login");
+        private By UserNameLocator = By.CssSelector("div.header_user_info");
+        private By HomeButtonLocator = By.CssSelector("div#block_top_menu * a[title='Home']");
+        private By LogOutButton = By.CssSelector("a.logout");
 
         private TestShopHeader()
         {
@@ -30,6 +34,11 @@ namespace BootCamp.Pages.Base
             }
         }
 
+        public String GetLoggedInUserName()
+        {
+            return driver.FindElement(UserNameLocator).Text;
+        }
+
         public ContactUsPage ClickContactUs()
         {
             driver.FindElement(ContactUsButton).Click();
@@ -40,6 +49,33 @@ namespace BootCamp.Pages.Base
         {
             driver.FindElement(LoginLocator).Click();
             return new LoginPage(driver);
+        }
+
+        public HomePage ClickHomeButton()
+        {
+            driver.FindElement(HomeButtonLocator).Click();
+            return new HomePage(driver);
+        }
+
+        public LoginPage ClickSignOut()
+        {
+            driver.FindElement(LogOutButton).Click();
+            return new LoginPage(driver);
+        }
+
+        public bool UserNameFieldExists()
+        {
+            bool elementExists = false;
+            try
+            {
+                IWebElement accountName = driver.FindElement(UserNameLocator).FindElement(By.CssSelector("a.account"));
+                elementExists = true;
+            }
+            catch (NoSuchElementException e)
+            {
+                Console.Write(e);
+            }
+            return elementExists;
         }
     }
 }

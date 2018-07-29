@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using BootCamp.Model;
 using BootCamp.Pages;
+using BootCamp.Pages.Base;
 using BootCamp.Test.Base;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static BootCamp.Pages.WishListsPage;

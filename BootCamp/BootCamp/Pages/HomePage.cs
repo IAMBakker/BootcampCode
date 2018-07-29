@@ -2,9 +2,9 @@
 using BootCamp.Pages.Base;
 using OpenQA.Selenium;
 
-namespace BootCamp.Test
+namespace BootCamp.Pages.Base
 {
-    internal class HomePage : TestShopPage
+    public class HomePage : TestShopPage
     {
 
         public HomePage(IWebDriver driver)
