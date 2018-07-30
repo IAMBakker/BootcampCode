@@ -28,10 +28,7 @@ namespace BootCamp.Pages.Base
 
         public void SetDriver(IWebDriver value)
         {
-            if(driver == null)
-            {
-                driver = value;
-            }
+            driver = value;
         }
 
         public String GetLoggedInUserName()

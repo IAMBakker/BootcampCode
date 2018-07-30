@@ -51,9 +51,10 @@ namespace BootCamp.Pages
 
         public void DeleteWishList(WishList wishListToDelete)
         {
-            IList<WishListRow> wishLists = GetWishListRows();
-
-            foreach(WishListRow wishList in wishLists)
+            IList<WishListRow> wishListRows = GetWishListRows();
+            int amountOfWishLists = wishListRows.Count;
+            Console.WriteLine("To be deleted wish list: " + wishListToDelete.Name);
+            foreach(WishListRow wishList in wishListRows)
             {
                 if (wishList.WishListObject.Equals(wishListToDelete))
                 {
@@ -61,17 +62,25 @@ namespace BootCamp.Pages
                     break;
                 }
             }
-            IAlert alert = driver.SwitchTo().Alert();
-            Console.WriteLine(alert.Text);
-            alert.Accept();
-            wait.Until<bool>((p) => WishListsUpdated(wishLists));
+            try
+            {
+                IAlert alert = driver.SwitchTo().Alert();
+                Console.WriteLine(alert.Text);
+                alert.Accept();
+
+            } catch (NoAlertPresentException e)
+            {
+                throw new Exception("Unable to Delete Wish List, specified wish list did not exist:\n" + e);
+            }
+            wait.Until<bool>((p) => WishListsSizeUpdated(amountOfWishLists));
         }
 
         public void MakeWishListDefault(WishList wishListToMakeDefault)
         {
-            IList<WishListRow> wishLists = GetWishListRows();
+            IList<WishListRow> wishListRows = GetWishListRows();
+            IList<WishList> wishLists = GetMyWishLists();
 
-            foreach(WishListRow wishList in wishLists)
+            foreach(WishListRow wishList in wishListRows)
             {
                 if (wishList.WishListObject.EqualsIgnoreIsDefault(wishListToMakeDefault))
                 {
@@ -79,13 +88,23 @@ namespace BootCamp.Pages
                     break;
                 }
             }
-            wait.Until<bool>((p) => WishListsUpdated(wishLists));
+            wait.Until<bool>((p) => DefaultWishListsUpdated(wishLists));
         }
 
-        private bool WishListsUpdated(IList<WishListRow> wishLists)
+        private bool DefaultWishListsUpdated(IList<WishList> wishLists)
         {
             bool isUpdated = false;
-            if (!wishLists.Equals(GetWishListRows()))
+            if (!wishLists.Equals(GetMyWishLists()))
+            {
+                isUpdated = true;
+            }
+            return isUpdated;
+        }
+
+        private bool WishListsSizeUpdated(int wishListSize)
+        {
+            bool isUpdated = false;
+            if (driver.FindElements(rowLocator).Count < wishListSize)
             {
                 isUpdated = true;
             }

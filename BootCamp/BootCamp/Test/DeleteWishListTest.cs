@@ -15,6 +15,13 @@ namespace BootCamp.Test
         [TestMethod]
         public void TestMethod1()
         {
+            IList<WishList> toBeCreatedWishLists = new List<WishList>();
+            toBeCreatedWishLists.Add(new WishList("Easy peasy lemon squeezy", 0, false));
+            toBeCreatedWishLists.Add(new WishList("Piece of cake", 0, false));
+            toBeCreatedWishLists.Add(new WishList("No Problemo", 0, false));
+            toBeCreatedWishLists.Add(new WishList("No Sweat", 0, false));
+            toBeCreatedWishLists.Add(new WishList("Ok maybe a little bit", 0, false));
+
             WishList feelThePain = new WishList("Feel the pain", 0, true);
 
             WishListsPage wishListPage = new HomePage(driver)
@@ -28,9 +35,20 @@ namespace BootCamp.Test
             if (!wishlists.Contains(feelThePain))
             {
                 wishListPage.AddWishList(feelThePain);
-            } 
+            }
+            foreach(WishList list in toBeCreatedWishLists)
+            {
+                if (!wishlists.Contains(list))
+                {
+                    wishListPage.AddWishList(list);
+                }
+            }
             wishListPage.DeleteWishList(feelThePain);
-
+            wishListPage.MakeWishListDefault(new WishList("Cardio Grind", 0, true));
+            foreach(WishList list in toBeCreatedWishLists)
+            {
+                wishListPage.DeleteWishList(list);
+            }
             Assert.IsFalse(wishListPage.GetMyWishLists().Contains(feelThePain),
                 "The wish list was deleted, so it should no longer exist in the table.");
         }
