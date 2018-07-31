@@ -36,7 +36,7 @@ namespace BootCamp.Test
                 .ClickMyWishLists();
 
             IList<WishList> wishlists = wishListPage
-                .GetMyWishLists();
+                .GetMyWishLists().asList();
 
             if (!wishlists.Contains(feelThePain))
             {
@@ -62,7 +62,7 @@ namespace BootCamp.Test
             {
                 wishListPage.DeleteWishList(list);
             }
-            Assert.IsFalse(wishListPage.GetMyWishLists().Contains(feelThePain),
+            Assert.IsFalse(wishListPage.GetMyWishLists().asList().Contains(feelThePain),
                 "The wish list was deleted, so it should no longer exist in the table.");
         }
     }

@@ -22,7 +22,7 @@ namespace BootCamp.Test
                 .ClickMyWishLists();
 
             wishListPage.DeleteWishList("Suffering");
-            if (!wishListPage.GetMyWishLists().Contains(suffering))
+            if (!wishListPage.GetMyWishLists().asList().Contains(suffering))
             {
                 wishListPage.AddWishList(suffering);
             }
