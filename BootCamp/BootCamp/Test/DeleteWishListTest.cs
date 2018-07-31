@@ -16,17 +16,23 @@ namespace BootCamp.Test
         public void TestMethod1()
         {
             IList<WishList> toBeCreatedWishLists = new List<WishList>();
-            toBeCreatedWishLists.Add(new WishList("Easy peasy lemon squeezy", 0, false));
-            toBeCreatedWishLists.Add(new WishList("Piece of cake", 0, false));
-            toBeCreatedWishLists.Add(new WishList("No Problemo", 0, false));
-            toBeCreatedWishLists.Add(new WishList("No Sweat", 0, false));
-            toBeCreatedWishLists.Add(new WishList("Ok maybe a little bit", 0, false));
+            toBeCreatedWishLists.Add(new WishList("Cardio Grind", 0, false));
+            toBeCreatedWishLists.Add(new WishList("HiiT List", 0, false));
+            toBeCreatedWishLists.Add(new WishList("Leg Day", 0, false));
+            toBeCreatedWishLists.Add(new WishList("No Pain No Gain", 0, false));
+
+            IList<WishList> toBeDeletedWishLists = new List<WishList>();
+            toBeDeletedWishLists.Add(new WishList("Easy peasy lemon squeezy", 0, false));
+            toBeDeletedWishLists.Add(new WishList("Piece of cake", 0, false));
+            toBeDeletedWishLists.Add(new WishList("No Problemo", 0, false));
+            toBeDeletedWishLists.Add(new WishList("No Sweat", 0, false));
+            toBeDeletedWishLists.Add(new WishList("Ok maybe a little bit", 0, false));
 
             WishList feelThePain = new WishList("Feel the pain", 0, true);
 
             WishListsPage wishListPage = new HomePage(driver)
                 .Header.ClickLogin()
-                .LoginSuccesfully("ico@bakker.com", "1qazxsw2")
+                .LoginSuccesfully("ico.bakker+292@gmail.com", "test123")
                 .ClickMyWishLists();
 
             IList<WishList> wishlists = wishListPage
@@ -43,9 +49,16 @@ namespace BootCamp.Test
                     wishListPage.AddWishList(list);
                 }
             }
+            foreach (WishList list in toBeDeletedWishLists)
+            {
+                if (!wishlists.Contains(list))
+                {
+                    wishListPage.AddWishList(list);
+                }
+            }
             wishListPage.DeleteWishList(feelThePain);
             wishListPage.MakeWishListDefault(new WishList("Cardio Grind", 0, true));
-            foreach(WishList list in toBeCreatedWishLists)
+            foreach(WishList list in toBeDeletedWishLists)
             {
                 wishListPage.DeleteWishList(list);
             }

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace BootCamp.Pages.Base
         public static TestShopRightColumn Instance { get { return lazy.Value; } }
 
         private IWebDriver driver;
+        private By myWishListsButton = By.CssSelector("a[title='My wishlists']");
+
         private TestShopRightColumn()
         {
 
@@ -22,6 +25,12 @@ namespace BootCamp.Pages.Base
         public void SetDriver(IWebDriver value)
         {
             driver = value;
+        }
+
+        public WishListsPage ClickMyWishLists()
+        {
+            driver.FindElement(myWishListsButton).Click();
+            return new WishListsPage(driver);
         }
     }
 

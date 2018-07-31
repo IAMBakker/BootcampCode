@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using BootCamp.Test.Base;
 using BootCamp.Test;
 using BootCamp.Pages.Base;
+using BootCamp.Pages;
 
 namespace BootCamp.Test
 {

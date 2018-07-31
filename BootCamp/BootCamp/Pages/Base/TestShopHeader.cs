@@ -20,6 +20,8 @@ namespace BootCamp.Pages.Base
         private By UserNameLocator = By.CssSelector("div.header_user_info");
         private By HomeButtonLocator = By.CssSelector("div#block_top_menu * a[title='Home']");
         private By LogOutButton = By.CssSelector("a.logout");
+        private By SearchQueryField = By.CssSelector("input#search_query_top");
+        private By SubmitSearchButton = By.CssSelector("button[name=submit_search]");
 
         private TestShopHeader()
         {
@@ -74,5 +76,13 @@ namespace BootCamp.Pages.Base
             }
             return elementExists;
         }
+
+        public SearchResultsPage SearchForText(String name)
+        {
+            driver.FindElement(SearchQueryField).SendKeys(name);
+            driver.FindElement(SubmitSearchButton).Click();
+            return new SearchResultsPage(driver);
+        }
+
     }
 }

@@ -2,7 +2,7 @@
 using BootCamp.Pages.Base;
 using OpenQA.Selenium;
 
-namespace BootCamp.Pages.Base
+namespace BootCamp.Pages
 {
     public class HomePage : TestShopPage
     {

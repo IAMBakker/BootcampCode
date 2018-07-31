@@ -1,5 +1,6 @@
 ﻿using BootCamp.Model;
 using BootCamp.Pages.Base;
+using BootCamp.Pages.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
@@ -49,6 +50,13 @@ namespace BootCamp.Pages
             }
         }
 
+        public void AddWishList(FillableWishList wishList)
+        {
+            AddWishList((WishList)wishList);
+            new AddProductsHelper(driver)
+                .AddProducts(wishList);
+        }
+
         public void DeleteWishList(WishList wishListToDelete)
         {
             IList<WishListRow> wishListRows = GetWishListRows();
@@ -73,6 +81,25 @@ namespace BootCamp.Pages
                 throw new Exception("Unable to Delete Wish List, specified wish list did not exist:\n" + e);
             }
             wait.Until<bool>((p) => WishListsSizeUpdated(amountOfWishLists));
+        }
+
+        public void DeleteWishList(String wishListName)
+        {
+            IList<WishListRow> wishListRows = GetWishListRows();
+            int amountOfWishLists = wishListRows.Count;
+            Console.WriteLine("To be deleted wish list: " + wishListName);
+            foreach (WishListRow wishList in wishListRows)
+            {
+                if (wishList.WishListObject.Name.Equals(wishListName))
+                {
+                    wishList.DeleteWishList();
+                    IAlert alert = driver.SwitchTo().Alert();
+                    Console.WriteLine(alert.Text);
+                    alert.Accept();
+                    wait.Until<bool>((p) => WishListsSizeUpdated(amountOfWishLists));
+                    break;
+                }
+            }
         }
 
         public void MakeWishListDefault(WishList wishListToMakeDefault)
