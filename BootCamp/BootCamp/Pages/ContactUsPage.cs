@@ -28,10 +28,26 @@ namespace BootCamp.Pages
             IWebElement emailTextField = driver.FindElement(EmailTextField);
             emailTextField.Clear();
             emailTextField.SendKeys(email);
-            driver.FindElement(ReferenceTextField).SendKeys(reference);
-            driver.FindElement(MessageTextArea).SendKeys(message);
+            IWebElement referenceField = driver.FindElement(ReferenceTextField);
+            referenceField.Clear();
+            referenceField.SendKeys(reference);
+            IWebElement textArea = driver.FindElement(MessageTextArea);
+            textArea.Clear();
+            textArea.SendKeys(message);
+            return this;
+        }
+
+        public ContactUsPage SubmitContactForm()
+        {
             driver.FindElement(SubmitButton).Click();
             return this;
+        }
+
+        public bool GetEmailValidation()
+        {
+            return driver.FindElement(EmailTextField)
+                .FindElement(By.XPath("..")).GetAttribute("class")
+                .Contains("form-ok");
         }
     }
 }

@@ -95,6 +95,7 @@
     <Compile Include="Test\CrazyDeleteWishListTest.cs" />
     <Compile Include="Test\C9LoginTest.cs" />
     <Compile Include="Test\NOK_FillInContactFormTest.cs" />
+    <Compile Include="Test\NOK_ContactFormEmailFormatTest.cs" />
     <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
