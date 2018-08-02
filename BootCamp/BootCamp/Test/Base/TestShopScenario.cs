@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BootCamp.Test.Base.Browser;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -20,7 +21,7 @@ namespace BootCamp.Test.Base
         [TestInitialize]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+            driver = BrowserFactoryBasic.InitBrowser("Chrome");
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://techblog.polteq.com/testshop/index.php");
 
@@ -30,8 +31,8 @@ namespace BootCamp.Test.Base
         [TestCleanup]
         public void TearDown()
         {
-            //driver.Close();
-            //driver.Quit();
+            driver.Close();
+            driver.Quit();
         }
     }
 }

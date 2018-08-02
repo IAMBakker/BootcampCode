@@ -22,11 +22,12 @@ namespace BootCamp.Test
                 .ClickMyWishLists();
 
             wishListPage.DeleteWishList("Suffering");
-            if (!wishListPage.GetMyWishLists().asList().Contains(suffering))
-            {
-                wishListPage.AddWishList(suffering);
-            }
+            wishListPage.AddWishList(suffering);
             wishListPage.DeleteWishList(suffering);
+
+            Assert.IsFalse(wishListPage.GetMyWishLists().asList().Contains(suffering), 
+                "Your suffering wish list was deleted..." +
+                " It should not be in this list of lists.");
         }
     }
 }

@@ -31,6 +31,7 @@ namespace BootCamp.Pages
 
             wait.Until<bool>((p) => FancyBoxOverlayExists());
             wait.Until<bool>((p) => FancyBoxOverlayFullyDisplayed());
+            wait.Until(ExpectedConditions.ElementToBeClickable(closeProductAddedSuccesfullyPopup));
             driver.FindElement(fancyBoxOverlay).FindElement(closeProductAddedSuccesfullyPopup).Click();
             wait.Until<bool>((p) => !FancyBoxOverlayExists());
             return this;
