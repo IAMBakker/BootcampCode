@@ -23,5 +23,10 @@ namespace BootCamp.Pages.Base
         {
             driver = value;
         }
+
+        public IWebElement getTagsBlock()
+        {
+            return driver.FindElement(By.CssSelector("div#tags_block_left"));
+        }
     }
 }

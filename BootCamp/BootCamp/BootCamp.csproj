@@ -57,10 +57,13 @@
   <ItemGroup>
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\FillableWishList.cs" />
+    <Compile Include="Pages\Base\CartWidget.cs" />
+    <Compile Include="Pages\ShoppingCartPopup.cs" />
     <Compile Include="Pages\ProductPage.cs" />
     <Compile Include="Pages\SearchResultsPage.cs" />
     <Compile Include="Pages\Helpers\AddProductsHelper.cs" />
     <Compile Include="Test\Base\Browser\BrowserFactoryBasic.cs" />
+    <Compile Include="Test\Base\Browser\BrowserType.cs" />
     <Compile Include="Test\HelloWorldTest.cs" />
     <Compile Include="Model\Auto.cs" />
     <Compile Include="Model\UserAccount.cs" />
@@ -90,6 +93,8 @@
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Test\DeleteWishListTest.cs" />
     <Compile Include="Test\CrazyDeleteWishListTest.cs" />
+    <Compile Include="Test\C9LoginTest.cs" />
+    <Compile Include="Test\NOK_FillInContactFormTest.cs" />
     <Compile Include="ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>

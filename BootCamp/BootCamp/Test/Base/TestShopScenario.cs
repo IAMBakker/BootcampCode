@@ -21,7 +21,7 @@ namespace BootCamp.Test.Base
         [TestInitialize]
         public void SetUp()
         {
-            driver = BrowserFactoryBasic.InitBrowser("Chrome");
+            driver = BrowserFactoryBasic.InitBrowser(BrowserType.CHROME);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://techblog.polteq.com/testshop/index.php");
 
@@ -31,8 +31,8 @@ namespace BootCamp.Test.Base
         [TestCleanup]
         public void TearDown()
         {
-            driver.Close();
-            driver.Quit();
+            //driver.Close();
+            //driver.Quit();
         }
     }
 }

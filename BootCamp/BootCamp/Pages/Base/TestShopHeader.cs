@@ -28,6 +28,11 @@ namespace BootCamp.Pages.Base
 
         }
 
+        public CartWidget GetCartWidget()
+        {
+            return new CartWidget(driver);
+        }
+
         public void SetDriver(IWebDriver value)
         {
             driver = value;
@@ -83,6 +88,5 @@ namespace BootCamp.Pages.Base
             driver.FindElement(SubmitSearchButton).Click();
             return new SearchResultsPage(driver);
         }
-
     }
 }

@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BootCamp.Pages
@@ -55,6 +56,22 @@ namespace BootCamp.Pages
 
             }
             return fancyBoxExists;
+        }
+
+        public ShoppingCartPopup AddProductToCart(String productName)
+        {
+            wait.Until<bool>((p) => GetPageTitle().Contains("SEARCH"));
+            IList productTiles = driver.FindElements(By.CssSelector("a.product-name"));
+            foreach(IWebElement productTile in productTiles)
+            {
+                if (productTile.GetAttribute("title").Equals(productName))
+                {
+                    productTile.Click();
+                    break;
+                }
+            }
+            driver.FindElement(By.CssSelector("p#add_to_cart > button[type='submit']")).Click();
+            return new ShoppingCartPopup(driver);
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using BootCamp.Test.Base;
 using OpenQA.Selenium.Support.UI;
+using BootCamp.Pages;
 
 namespace BootCamp
 {
@@ -12,30 +13,21 @@ namespace BootCamp
         [TestMethod]
         public void TestMethod1()
         {
+            HomePage homePage = new HomePage(driver);
+            Assert.IsTrue(homePage.Header.GetCartWidget()
+                .getEmptyCartElement().Displayed,
+                "Empty Cart Element should be displayed");
 
-            IWebElement emptyCartElement = driver.FindElement(By.CssSelector("span.ajax_cart_no_product"));
+            homePage.LeftColumn.getTagsBlock()
+                .FindElement(By.CssSelector("a[title='More about ipod']")).Click();
 
-            Assert.IsTrue(emptyCartElement.Displayed);
+            new ProductPage(driver)
+                .AddProductToCart("iPod shuffle")
+                .handleShoppingCart();
 
-            IWebElement tagsBlock = driver.FindElement(By.CssSelector("div#tags_block_left"));
-            tagsBlock.FindElement(By.CssSelector("a[title='More about ipod']")).Click();
-
-            driver.FindElement(By.CssSelector("a.product-name[title='iPod shuffle']")).Click();
-
-            driver.FindElement(By.CssSelector("p#add_to_cart > button[type='submit']")).Click();
-
-            IWebElement cartPopup = driver.FindElement(By.CssSelector("div#layer_cart"));
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
-            By continueShoppingLocator = By.CssSelector("span[title='Continue shopping']");
-
-            wait.Until(ExpectedConditions.ElementToBeClickable(continueShoppingLocator));
-
-            cartPopup.FindElement(continueShoppingLocator).Click();
-
-            Assert.AreEqual(driver.FindElement(By.CssSelector("span.ajax_cart_quantity")).Text, "1", 
+            String cartItemAmount = homePage.Header.GetCartWidget().GetCartItemAmount();
+            Assert.AreEqual(cartItemAmount, "1", 
                 "Shopping cart should be filled with a product.");
-
         }
     }
 }
