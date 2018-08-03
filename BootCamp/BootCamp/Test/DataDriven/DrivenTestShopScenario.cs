@@ -1,5 +1,5 @@
 ﻿using BootCamp.Test.Base.Browser;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -9,26 +9,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BootCamp.Test.Base
+namespace BootCamp.Test.DataDriven
 {
-    [TestClass]
-    public class TestShopScenario
+    [TestFixture]
+    public class DrivenTestShopScenario
     {
 
         protected IWebDriver driver;
         protected WebDriverWait wait;
+        protected String browser;
 
-        [TestInitialize]
-        public void SetUp()
+        
+
+        public void initBrowsers(String browser)
         {
-            driver = BrowserFactoryBasic.InitBrowser(BrowserType.CHROME);
+            driver = BrowserFactoryBasic.InitBrowser(browser);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://techblog.polteq.com/testshop/index.php");
 
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
             driver.Close();

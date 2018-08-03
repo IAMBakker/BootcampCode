@@ -1,5 +1,5 @@
 ﻿using BootCamp.Test.Base.Browser;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace BootCamp.Test.Base
 {
-    [TestClass]
-    public class TestShopScenario
+    [TestFixture]
+    public class NunitTestShopScenario
     {
 
         protected IWebDriver driver;
         protected WebDriverWait wait;
 
-        [TestInitialize]
+        [SetUp]
         public void SetUp()
         {
             driver = BrowserFactoryBasic.InitBrowser(BrowserType.CHROME);
@@ -28,7 +28,7 @@ namespace BootCamp.Test.Base
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TearDown()
         {
             driver.Close();
