@@ -9,21 +9,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BootCamp.Test.DataDriven
+namespace BootCamp.Test.Base
 {
     [TestFixture]
-    public class DrivenTestShopScenario
+    public class NunitTestShopScenario
     {
 
         protected IWebDriver driver;
         protected WebDriverWait wait;
-        protected String browser;
 
-        
-
-        public void initBrowsers(String browser)
+        [SetUp]
+        public void SetUp()
         {
-            driver = BrowserFactoryBasic.InitBrowser(browser);
+            driver = BrowserFactoryBasic.InitBrowser(BrowserType.CHROME);
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://techblog.polteq.com/testshop/index.php");
 

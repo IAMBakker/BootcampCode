@@ -7,18 +7,19 @@ using NUnit.Framework;
 namespace BootCamp.Test.DataDriven
 {
     [TestFixture]
-    public class FillInContactFormTest : DrivenTestShopScenario
+    public class DataDrivenContactFormTest : NunitTestShopScenario
     {
         //[Values("Chrome", "Firefox")]
         //String browser
         
         [Test]
-        public void TestMethod1([BrowserList] String browser)
+        public void TestMethod1([ContactInfoList] ContactInfo contactInfo)
         {
-            initBrowsers(browser);
             ContactUsPage page = new HomePage(driver)
                 .Header.ClickContactUs()
-                .FillContactForm("Customer service", "bootcamper@feelthepain.com", "43211234", "Ipod defect while lifting, \nneed new one");
+                .FillContactForm(contactInfo.subject,
+                    contactInfo.email, contactInfo.orderID, contactInfo.message)
+                .SubmitContactForm();
             String pageTitle = page.GetPageTitle();
             String alertMessage = page.GetAlertMessageText();
 

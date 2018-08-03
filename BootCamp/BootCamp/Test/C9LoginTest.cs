@@ -1,6 +1,7 @@
 ﻿using System;
 using BootCamp.Pages;
 using BootCamp.Test.Base;
+using BootCamp.Test.DataDriven;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BootCamp.Test
@@ -11,6 +12,7 @@ namespace BootCamp.Test
         [TestMethod]
         public void TestMethod1()
         {
+            
             HomePage homePage = new HomePage(driver);
             if(homePage.Header.UserNameFieldExists())
             {
