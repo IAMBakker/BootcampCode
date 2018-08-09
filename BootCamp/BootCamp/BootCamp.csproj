@@ -98,8 +98,8 @@
     <Compile Include="Test\LoginTest.cs" />
     <Compile Include="Test\SignOutTest.cs" />
     <Compile Include="Test\Base\TestShopScenario.cs" />
-    <Compile Include="EmptyCartTest.cs" />
-    <Compile Include="FillCartTest.cs" />
+    <Compile Include="Test\EmptyCartTest.cs" />
+    <Compile Include="Test\FillCartTest.cs" />
     <Compile Include="Test\AdjustPersonalinfoTest.cs" />
     <Compile Include="Test\AdjustPersonalInfoOnHomepageTest.cs" />
     <Compile Include="Test\CreateAccountTest.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="Test\C9LoginTest.cs" />
     <Compile Include="Test\NOK_FillInContactFormTest.cs" />
     <Compile Include="Test\NOK_ContactFormEmailFormatTest.cs" />
-    <Compile Include="ValidateSupplierProductTest.cs" />
+    <Compile Include="Test\ValidateSupplierProductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

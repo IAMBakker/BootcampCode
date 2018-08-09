@@ -4,8 +4,9 @@ using BootCamp.Test.Base;
 using OpenQA.Selenium;
 using System.Collections;
 using OpenQA.Selenium.Support.UI;
+using BootCamp.Pages;
 
-namespace BootCamp
+namespace BootCamp.Test
 {
     [TestClass]
     public class ValidateSupplierProductTest : TestShopScenario
@@ -13,20 +14,11 @@ namespace BootCamp
         [TestMethod]
         public void TestMethod1()
         {
-            IWebElement supplierDropdown = driver.FindElement(By.CssSelector("select[name='supplier_list']"));
-            supplierDropdown.Click();
-            IList suppliers = supplierDropdown.FindElements(By.CssSelector("option"));
+            IList productTiles = new HomePage(driver)
+                .LeftColumn.clickSupplierSelect()
+                .appleStore()
+                .getProductTiles();
 
-            foreach(IWebElement supplier in suppliers)
-            {
-                if(supplier.Text.Equals("AppleStore"))
-                {
-                    supplier.Click();
-                    break;
-                }
-            }
-
-            IList productTiles = driver.FindElements(By.CssSelector("div.product-container"));
             IList productNames = new ArrayList();
             foreach(IWebElement productTile in productTiles)
             {

@@ -1,6 +1,7 @@
 ﻿using BootCamp.Pages.Base;
 using OpenQA.Selenium;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BootCamp.Pages
@@ -9,6 +10,7 @@ namespace BootCamp.Pages
     {
 
         private By productName = By.CssSelector("a.product-name");
+        private By productTile = By.CssSelector("div.product-container");
 
         public SearchResultsPage(IWebDriver driver)
             : base(driver)
@@ -17,10 +19,10 @@ namespace BootCamp.Pages
 
         public ProductPage SelectProductWithName(String name)
         {
-            IList<IWebElement> products = driver.FindElements(productName);
-            foreach(IWebElement productTile in products)
+            
+            foreach(IWebElement productTile in getProductTiles())
             {
-                if (productTile.Text.Equals(name))
+                if (productTile.FindElement(productName).Text.Equals(name))
                 {
                     productTile.Click();
                     break;
@@ -28,6 +30,11 @@ namespace BootCamp.Pages
             }
 
             return new ProductPage(driver);
+        }
+
+        internal IList getProductTiles()
+        {
+            return driver.FindElements(productTile);
         }
     }
 }

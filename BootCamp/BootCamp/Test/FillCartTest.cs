@@ -5,7 +5,7 @@ using BootCamp.Test.Base;
 using OpenQA.Selenium.Support.UI;
 using BootCamp.Pages;
 
-namespace BootCamp
+namespace BootCamp.Test
 {
     [TestClass]
     public class FillCartTest : TestShopScenario

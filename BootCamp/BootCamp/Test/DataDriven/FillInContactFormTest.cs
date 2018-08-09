@@ -18,7 +18,8 @@ namespace BootCamp.Test.DataDriven
             initBrowsers(browser);
             ContactUsPage page = new HomePage(driver)
                 .Header.ClickContactUs()
-                .FillContactForm("Customer service", "bootcamper@feelthepain.com", "43211234", "Ipod defect while lifting, \nneed new one");
+                .FillContactForm("Customer service", "bootcamper@feelthepain.com", "43211234", "Ipod defect while lifting, \nneed new one")
+                .SubmitContactForm();
             String pageTitle = page.GetPageTitle();
             String alertMessage = page.GetAlertMessageText();
 
