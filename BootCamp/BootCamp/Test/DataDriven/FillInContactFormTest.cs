@@ -9,9 +9,6 @@ namespace BootCamp.Test.DataDriven
     [TestFixture]
     public class FillInContactFormTest : DrivenTestShopScenario
     {
-        //[Values("Chrome", "Firefox")]
-        //String browser
-        
         [Test]
         public void TestMethod1([BrowserList] String browser)
         {
